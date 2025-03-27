@@ -75,6 +75,9 @@ make load_bbc_recipes:
 make streamlit:
 	poetry run streamlit run streamlit_app.py $(file_path)
 
+make streamlit_bbc_recipes:
+	poetry run streamlit run bbc_recipes_app.py data/bbc_recipes/ui-config.json
+
 ######################
 # HELP
 ######################

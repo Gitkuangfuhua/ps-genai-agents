@@ -41,7 +41,7 @@ def main() -> None:
     embedder = OpenAIEmbeddings(model=MODEL_NAME)
 
     # Create a vector index if it doesn't exist
-    with driver.session() as session:
+    with driver.session(database=os.getenv("NEO4J_DATABASE", "neo4j")) as session:
         session.run("""
 CREATE VECTOR INDEX cypher_query_vector_index IF NOT EXISTS
 FOR (m:CypherQuery)
