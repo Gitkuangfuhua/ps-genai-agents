@@ -52,6 +52,7 @@ def show_cypher_response_information(response: OutputState) -> None:
                 (
                     st.write(c.get("task", "")),
                     st.code(c.get("statement"), language="cypher"),
+                    st.write(c.get("parameters", "No parameters")),
                     st.json(
                         c.get("records") if c.get("records") is not None else "",
                         expanded=False,
