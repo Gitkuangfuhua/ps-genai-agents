@@ -9,13 +9,15 @@ from dotenv import load_dotenv
 from langchain_neo4j import Neo4jGraph
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
-from ps_genai_agents.retrievers.cypher_examples import Neo4jVectorSearchCypherExampleRetriever
+from data.bbc_recipes.queries import get_cypher_statements_dictionary, get_tool_schemas
+from ps_genai_agents.components.text2cypher import get_text2cypher_schema
+from ps_genai_agents.retrievers.cypher_examples import (
+    Neo4jVectorSearchCypherExampleRetriever,
+)
 from ps_genai_agents.ui.components import chat, display_chat_history, sidebar
 from ps_genai_agents.workflows.multi_agent import (
     create_multi_tool_workflow,
 )
-from data.bbc_recipes.queries import get_cypher_statements_dictionary, get_tool_schemas
-from ps_genai_agents.components.text2cypher import get_text2cypher_schema
 
 if load_dotenv():
     print("Env Loaded Successfully!")
@@ -60,7 +62,12 @@ def initialize_state(
 
         st.session_state["embedder"] = OpenAIEmbeddings(model="text-embedding-ada-002")
 
-        cypher_example_retriever = Neo4jVectorSearchCypherExampleRetriever(neo4j_database="neo4j", neo4j_driver=st.session_state["graph"]._driver, vector_index_name="cypher_query_vector_index", embedder=st.session_state["embedder"])
+        cypher_example_retriever = Neo4jVectorSearchCypherExampleRetriever(
+            neo4j_database="neo4j",
+            neo4j_driver=st.session_state["graph"]._driver,
+            vector_index_name="cypher_query_vector_index",
+            embedder=st.session_state["embedder"],
+        )
 
         cypher_queries_for_tools = (
             get_cypher_statements_dictionary()
@@ -70,8 +77,6 @@ def initialize_state(
             get_tool_schemas() + [get_text2cypher_schema()]
         )  # these are Pydantic classes that define the available Cypher queries and their parameters
 
-
-        
         st.session_state["agent"] = create_multi_tool_workflow(
             llm=st.session_state["llm"],
             graph=st.session_state["graph"],

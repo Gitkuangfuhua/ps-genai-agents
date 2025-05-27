@@ -1,7 +1,6 @@
-from typing import Any, Callable, Coroutine, Dict, List
+from typing import Any, Callable, Coroutine, Dict
 from unittest.mock import MagicMock
 
-import evaluate
 import pytest
 from langchain_neo4j import Neo4jGraph
 from langchain_openai import ChatOpenAI
