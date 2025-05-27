@@ -96,7 +96,7 @@ def create_tool_selection_node(
         tool_selection_output: BaseModel = await tool_selection_chain.ainvoke(
             {"question": state.get("question", "")}
         )
-
+        print(tool_selection_output)
         # route to chosen tool node
         if tool_selection_output is not None:
             tool_name: str = tool_selection_output.model_json_schema().get("title", "")

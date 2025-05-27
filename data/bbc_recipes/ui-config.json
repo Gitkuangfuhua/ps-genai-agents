@@ -1,0 +1,11 @@
+{
+    "title": "BBC Good Foods Recipe Explorer",
+    "scope_description": "This application may answer questions related to cooking recipes and their authors.",
+    "cypher_query_yaml_file_path": "data/bbc_recipes/queries/queries.yml",
+    "example_questions": [
+        "How many authors have written a recipe?",
+        "What color is the sky?",
+        "What ingredients does Emma Lewis like to use most?",
+        "What are some easy recipes I can make? Also can you share how many ingredients you know about?"
+    ]
+}

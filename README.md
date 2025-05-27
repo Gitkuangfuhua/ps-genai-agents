@@ -24,7 +24,7 @@ To use `ps-genai-agents` package you can either clone or fork the repository.
 
 Then:
 * Install all the dependencies using Poetry by running `poetry install --with dev, ui`
-* Provide a `.env` file to connect to your Neo4j database and LLM provider
+* Provide a `.env` file that follows the format of `.env.example` to connect to your Neo4j database and LLM provider
 * Create a `queries.yml` file containing question and Cypher pairs to use for the Text2Cypher agent that follows the format of `example-queries.yml`
 
 *Note: The queries.yml file will contain questions that define the scope of your application.*
@@ -48,6 +48,47 @@ LangGraph Studio will use the workflow created in `ps_genai_agents/agent.py` wit
 You may modify what workflow is used by modifying the contents of `langgraph.json`.
 
 You may find additional documentation on LangGraph Studio [here](https://langchain-ai.github.io/langgraph/concepts/langgraph_studio/).
+
+## BBC Foods Demo
+
+To run the BBC Foods demo ensure that the project is installed according to the Set Up instructions above. You will not need to follow the Streamlit or LangGraph Studio instructions for the demo to work. 
+
+Your `.env` file will require Neo4j connection information and an OpenAI API key.
+
+### Launch a Neo4j instance
+
+Deploy a Neo4j instance via the [Aura console]() or [Neo4j Desktop](). 
+
+Copy the connection credentials to the `.env` file.
+
+### Load BBC Good Foods Data
+
+From the command line run:
+
+```
+make load_bbc_recipes
+```
+
+This will 
+* Ingest the BBC Good Foods data 
+* Embed and ingest Example question & Cypher query pairs to be used for few-shot examples in Text2Cypher
+
+### Notebook Example
+
+Navigate to the [multitool agent workflow example notebook](ps-genai-agents/examples/workflows/multi_tool.ipynb).
+
+This notebook demonstrates using a mixture of predefined Cypher queries and Text2Cypher to answer questions about cooking recipes.
+
+### Streamlit Example
+
+From the command line run:
+```
+make streamlit_bbc_recipes
+```
+
+This will launch a local instance of a Streamlit application using the same multitool agent. Here we can easily see how each answer is derived by viewing the subtasks, Cypher queries and raw return results. 
+
+---
 
 ## Agents & Workflows
 
