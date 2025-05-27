@@ -9,7 +9,6 @@ all: help
 
 init:
 	poetry install --with dev, ui
-	pre-commit install
 
 
 ######################

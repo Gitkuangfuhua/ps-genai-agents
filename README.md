@@ -83,7 +83,7 @@ This notebook demonstrates using a mixture of predefined Cypher queries and Text
 
 From the command line run:
 ```
-
+make streamlit_bbc_recipes
 ```
 
 This will launch a local instance of a Streamlit application using the same multitool agent. Here we can easily see how each answer is derived by viewing the subtasks, Cypher queries and raw return results. 
