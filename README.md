@@ -1,3 +1,10 @@
+本项目基于 [ps-genai-agents](https://github.com/neo4j-field/ps-genai-agents) Fork 开发，集成 FAISS 向量库与 VRF 多联机知识图谱（Neo4j），用于 HVAC 故障智能诊断系统。
+
+新增特性：
+- 支持 FAISS 本地向量检索
+- 故障码与根因图谱分析
+- LangGraph 多轮对话控制
+
 # PS GenAI Agents
 
 This repository contains the `ps-genai-agents` package which may be used to create off-the-shelf agentic workflows built for Neo4j. The purpose of this repo is to provide foundational agents and workflows that may function with any underlying Neo4j graph. While these workflows should function well on their own - it is expected that they will be augmented to serve more specific use cases once pulled into other projects.
